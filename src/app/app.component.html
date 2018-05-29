@@ -1,20 +1,67 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Solar Block Chain</span>
+    <span class="example-spacer"></span>
+    <i class="material-icons">face</i>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="flex-container">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>New operation</mat-card-title>
+        <mat-card-subtitle>This creates an operation contract in the blockchain</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Reference" [(ngModel)]="newOperation.name">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Amount" [(ngModel)]="newOperation.amount">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Rate in %" [(ngModel)]="newOperation.ratePercentage">
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <span class="example-spacer"></span>
+        <button mat-button class="right" (click)="createOperation()">CREATE</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="list-card">
+      <mat-card-header>
+        <mat-card-title>All operations</mat-card-title>
+        <mat-card-subtitle>Here are all the operations registered in the blockchain</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <div class="flex-container">
+            <mat-list-item>Ref.</mat-list-item>
+            <mat-list-item>$ Purchased</mat-list-item>
+            <mat-list-item>$ Needed</mat-list-item>
+            <mat-list-item>% Returns</mat-list-item>
+            <mat-divider></mat-divider>
+          </div>
+          <div *ngFor="let operation of operations" (click)="viewOperation(operation)" class="flex-container">
+            <mat-list-item>{{operation.name}}</mat-list-item>
+            <mat-list-item>${{operation.purchased}}</mat-list-item>
+            <mat-list-item>${{operation.amount}}</mat-list-item>
+            <mat-list-item>{{operation.ratePercentage}}%</mat-list-item>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-list>
+      </mat-card-content>
+    </mat-card> 
+    <mat-card class="example-card list-card" *ngIf="selectedOperation">
+      <mat-card-header>
+        <mat-card-title>Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+            <mat-list-item>{{selectedOperation.name}}</mat-list-item>
+            <mat-list-item>${{selectedOperation.purchased}}</mat-list-item>
+            <mat-list-item>${{selectedOperation.amount}}</mat-list-item>
+            <mat-list-item>{{selectedOperation.ratePercentage}}%</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card> 
+</div>  
