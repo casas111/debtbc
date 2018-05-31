@@ -23,7 +23,6 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
-        <span class="example-spacer"></span>
         <button mat-button class="right" (click)="createOperation()">CREATE</button>
       </mat-card-actions>
     </mat-card>
@@ -46,6 +45,10 @@
             <mat-list-item>${{operation.purchased}}</mat-list-item>
             <mat-list-item>${{operation.amount}}</mat-list-item>
             <mat-list-item>{{operation.ratePercentage}}%</mat-list-item>
+            <mat-divider></mat-divider>
+          </div>
+          <div *ngFor="let pending of pendindOperations" class="flex-container">
+            <mat-list-item>{{pending.name}} <mat-spinner [diameter]="30"></mat-spinner></mat-list-item>
             <mat-divider></mat-divider>
           </div>
         </mat-list>

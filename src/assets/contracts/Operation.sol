@@ -19,7 +19,8 @@ contract OperationContract{
     
     
     event Published(address _from, string _name, uint _amount,uint _ratePercentage);
-    event Financed(address _from,uint _amount,uint _ratePercentage);
+    event Financed(address _from,uint _amount,uint _timestamp);
+    event Completed();
     event Destructed();
     
     
@@ -50,7 +51,7 @@ contract OperationContract{
         emit Financed(msg.sender, msg.value, now);
         if(amount <= purchased){
             status=2;
-            emit Financed(msg.sender, msg.value, now);
+            emit Completed();
         }
     }
     
